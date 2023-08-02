@@ -1,0 +1,26 @@
+[package]
+name = "gui"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+description.workspace = true
+license.workspace = true
+
+
+[dependencies]
+eframe = { version = "0.22", default-features = false, features = [
+    "wgpu",
+    "default_fonts",
+] }
+env_logger = "0.10"
+
+[dev-dependencies]
+cargo-husky.workspace = true
+
+
+[[bin]]
+name = "dashboard_template"
+path = "src/bin/main.rs"
