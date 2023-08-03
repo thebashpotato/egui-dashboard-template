@@ -9,11 +9,11 @@ use std::{
 
 /// The version of the dashboard
 pub static DASHBOARD_VERSION: Lazy<Version> = Lazy::new(|| {
-    let version = semver::Version::parse(env!("CARGO_PKG_VERSION")).unwrap();
-    version
+    semver::Version::parse(env!("CARGO_PKG_VERSION")).expect("Could not parse version")
 });
 
 /// Consisten across architectures, might not be consistent across different compiler versions
+#[must_use]
 pub fn hash_string(string: &str) -> u64 {
     let mut hasher = DefaultHasher::new();
     string.hash(&mut hasher);
@@ -21,11 +21,13 @@ pub fn hash_string(string: &str) -> u64 {
 }
 
 /// Check if the current build uses the nightly compiler
+#[must_use]
 pub fn is_nightly() -> bool {
     DASHBOARD_VERSION.build.contains("nightly")
 }
 
 /// Check if the current build is stable
+#[must_use]
 pub fn is_stable() -> bool {
     DASHBOARD_VERSION.pre.is_empty() && !is_nightly()
 }
