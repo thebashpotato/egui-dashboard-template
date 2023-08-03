@@ -1,0 +1,8 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./dashboard/common/Cargo.toml",
+        "./dashboard/common/Cargo.toml",
+        "./dashboard/common/Cargo.toml",
+        "./dashboard/gui/Cargo.toml"
+    ]
+}
