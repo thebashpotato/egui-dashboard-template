@@ -11,11 +11,11 @@ license.workspace = true
 
 [dependencies]
 dashboard_template_common.workspace = true
-eframe = { version = "0.22", default-features = false, features = [
+eframe = { version = "0.23.0", default-features = false, features = [
     "glow",
     "default_fonts",
 ] }
-env_logger = "0.10"
+env_logger = "0.10.0"
 
 [dev-dependencies]
 cargo-husky.workspace = true
