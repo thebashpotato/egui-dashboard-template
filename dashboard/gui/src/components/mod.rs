@@ -2,3 +2,4 @@
 
 pub mod about;
 pub mod basic;
+pub mod notifications;

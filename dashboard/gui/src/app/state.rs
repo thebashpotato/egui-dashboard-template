@@ -1,20 +1,32 @@
 //! holds the state of the application
 
-use dashboard_aesthetix::themes::{Aesthetix, CarlDark};
+use dashboard_aesthetix::themes::{Aesthetix, GenericDark};
+
+
+/// The different tabs of the application
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Debug)]
+pub enum Tab {
+    /// The home tab
+    Home,
+    /// The settings tab
+    Settings,
+    /// The logs tab
+    Logs,
+    /// The debug tab
+    Debug,
+    /// The about tab
+    About,
+}
 
 /// Application state
 #[derive(Debug)]
 pub struct State {
-    /// dummy state
-    pub name: String,
-    /// dummy state
-    pub age: u32,
+    /// The currently selected tab
+    pub active_tab: Tab,
     /// The active theme
     // TODO: Make this a list of themes, and allow the user to switch between them.
     // TODO: Switch to static dispatching instead of dynamic dispatching.
     pub active_theme: Box<dyn Aesthetix>,
-    /// so we don't reload the theme every frame
-    pub is_theme_initialized: bool,
 }
 
 impl State {
@@ -22,10 +34,8 @@ impl State {
     #[must_use]
     pub fn new() -> Self {
         Self {
-            name: "John Doe".to_owned(),
-            age: 42,
-            active_theme: Box::new(CarlDark),
-            is_theme_initialized: false,
+            active_tab: Tab::Home,
+            active_theme: Box::new(GenericDark),
         }
     }
 }

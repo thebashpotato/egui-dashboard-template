@@ -1,5 +1,5 @@
 [workspace]
-members = ["dashboard/gui", "dashboard/aesthetix"]
+members = ["dashboard/gui", "dashboard/aesthetix", "dashboard/common"]
 
 resolver = "2"
 
@@ -16,6 +16,7 @@ license = "MIT"
 [workspace.dependencies]
 dashboard_aesthetix = { path = "dashboard/aesthetix" }
 dashboard_gui = { path = "dashboard/gui" }
+dashboard_common = { path = "dashboard/common" }
 
 cargo-husky = { version = "1.5.0", features = [
     "precommit-hook",

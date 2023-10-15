@@ -1,7 +1,7 @@
 //! Custom themes for egui applications.
 
-mod carl;
+mod standard;
 mod traits;
 
-pub use carl::CarlDark;
+pub use standard::GenericDark;
 pub use traits::Aesthetix;

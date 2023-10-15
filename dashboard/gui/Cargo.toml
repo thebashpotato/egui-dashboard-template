@@ -12,6 +12,7 @@ license.workspace = true
 
 [dependencies]
 dashboard_aesthetix.workspace = true
+dashboard_common.workspace = true
 eframe = { version = "0.23.0", default-features = false, features = [
     "glow",
     "default_fonts",

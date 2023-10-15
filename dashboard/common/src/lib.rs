@@ -1,4 +1,4 @@
-//! Project-level warnings.
+//! Common code shared between other crates
 
 // clippy WARN level lints
 #![warn(
@@ -59,10 +59,8 @@
     clippy::unseparated_literal_suffix,
     clippy::verbose_file_reads
 )]
-// clipp ALLOW level hints
+
+// clippy ALLOW level hints
 #![allow(clippy::module_name_repetitions)]
 
-mod app;
-pub mod components;
-
-pub use app::Dashboard;
+pub mod version;

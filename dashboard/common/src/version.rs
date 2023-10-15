@@ -12,7 +12,7 @@ pub static DASHBOARD_VERSION: Lazy<Version> = Lazy::new(|| {
     semver::Version::parse(env!("CARGO_PKG_VERSION")).expect("Could not parse version")
 });
 
-/// Consisten across architectures, might not be consistent across different compiler versions
+/// Consistent across architectures, might not be consistent across different compiler versions
 #[must_use]
 pub fn hash_string(string: &str) -> u64 {
     let mut hasher = DefaultHasher::new();

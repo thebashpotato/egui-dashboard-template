@@ -42,9 +42,10 @@ pub trait Aesthetix {
     fn bg_triage_color_visuals(&self) -> egui::Color32;
 
     /// Background color behind code-styled monospaced labels.
+    /// Back up lighter than the background primary, secondary and triage colors.
     ///
     /// - This value is used for egui's code_bg_color field
-    fn bg_code_color_visuals(&self) -> egui::Color32;
+    fn bg_auxiliary_color_visuals(&self) -> egui::Color32;
 
     /// The color for hyperlinks
     fn hyperlink_color_visuals(&self) -> egui::Color32;
@@ -54,6 +55,9 @@ pub trait Aesthetix {
     /// If text_color is None (default), then the text color will be the same as the foreground stroke color
     /// and will depend on whether or not the widget is being interacted with.
     fn fg_primary_text_color_visuals(&self) -> Option<egui::Color32>;
+
+    /// Sucess color for text
+    fn fg_success_text_color_visuals(&self) -> egui::Color32;
 
     /// Warning text color
     fn fg_warn_text_color_visuals(&self) -> egui::Color32;
@@ -149,11 +153,11 @@ pub trait Aesthetix {
     /// noninteractive.fg_stroke is the normal text color.
     fn custom_noninteractve_widget_visuals(&self) -> egui::style::WidgetVisuals {
         egui::style::WidgetVisuals {
-            bg_fill: self.bg_secondary_color_visuals(),
-            weak_bg_fill: self.bg_secondary_color_visuals(),
+            bg_fill: self.bg_auxiliary_color_visuals(),
+            weak_bg_fill: self.bg_auxiliary_color_visuals(),
             bg_stroke: egui::Stroke {
                 width: 1.0,
-                color: egui::Color32::from_rgb(60, 60, 60),
+                color: self.bg_auxiliary_color_visuals(),
             },
             rounding: egui::Rounding {
                 nw: self.rounding_visuals(),
@@ -163,7 +167,7 @@ pub trait Aesthetix {
             },
             fg_stroke: egui::Stroke {
                 width: 1.0,
-                color: egui::Color32::from_rgb(140, 140, 140),
+                color: self.fg_primary_text_color_visuals().unwrap_or_default(),
             },
             expansion: 0.0,
         }
@@ -172,8 +176,8 @@ pub trait Aesthetix {
     /// The style of an interactive widget, such as a button, at rest.
     fn widget_inactive_visual(&self) -> egui::style::WidgetVisuals {
         egui::style::WidgetVisuals {
-            bg_fill: egui::Color32::from_rgb(60, 60, 60),
-            weak_bg_fill: egui::Color32::from_rgb(34, 34, 34),
+            bg_fill: self.bg_auxiliary_color_visuals(),
+            weak_bg_fill: self.bg_auxiliary_color_visuals(),
             bg_stroke: egui::Stroke {
                 width: 0.0,
                 color: egui::Color32::from_rgba_premultiplied(0, 0, 0, 0),
@@ -195,11 +199,11 @@ pub trait Aesthetix {
     /// The style of an interactive widget while you hover it, or when it is highlighted
     fn widget_hovered_visual(&self) -> egui::style::WidgetVisuals {
         egui::style::WidgetVisuals {
-            bg_fill: egui::Color32::from_rgb(70, 70, 70),
-            weak_bg_fill: egui::Color32::from_rgb(30, 30, 30),
+            bg_fill: self.bg_auxiliary_color_visuals(),
+            weak_bg_fill: self.bg_auxiliary_color_visuals(),
             bg_stroke: egui::Stroke {
                 width: 1.0,
-                color: self.secondary_accent_color_visuals(),
+                color: self.bg_triage_color_visuals(),
             },
             rounding: egui::Rounding {
                 nw: self.rounding_visuals(),
@@ -209,20 +213,20 @@ pub trait Aesthetix {
             },
             fg_stroke: egui::Stroke {
                 width: 1.5,
-                color: egui::Color32::from_rgb(240, 240, 240),
+                color: self.fg_primary_text_color_visuals().unwrap_or_default(),
             },
-            expansion: 1.0,
+            expansion: 2.0,
         }
     }
 
     /// The style of an interactive widget as you are clicking or dragging it.
     fn custom_active_widget_visual(&self) -> egui::style::WidgetVisuals {
         egui::style::WidgetVisuals {
-            bg_fill: self.bg_code_color_visuals(),
-            weak_bg_fill: self.bg_code_color_visuals(),
+            bg_fill: self.bg_primary_color_visuals(),
+            weak_bg_fill: self.primary_accent_color_visuals(),
             bg_stroke: egui::Stroke {
                 width: 1.0,
-                color: egui::Color32::from_rgb(255, 255, 255),
+                color: self.bg_primary_color_visuals(),
             },
             rounding: egui::Rounding {
                 nw: self.rounding_visuals(),
@@ -232,7 +236,7 @@ pub trait Aesthetix {
             },
             fg_stroke: egui::Stroke {
                 width: 2.0,
-                color: egui::Color32::from_rgb(255, 255, 255),
+                color: self.fg_primary_text_color_visuals().unwrap_or_default(),
             },
             expansion: 1.0,
         }
@@ -245,7 +249,7 @@ pub trait Aesthetix {
             weak_bg_fill: self.bg_secondary_color_visuals(),
             bg_stroke: egui::Stroke {
                 width: 1.0,
-                color: egui::Color32::from_rgb(60, 60, 60),
+                color: self.bg_triage_color_visuals(),
             },
             rounding: egui::Rounding {
                 nw: self.rounding_visuals(),
@@ -255,7 +259,7 @@ pub trait Aesthetix {
             },
             fg_stroke: egui::Stroke {
                 width: 1.0,
-                color: egui::Color32::from_rgb(210, 210, 210),
+                color: self.hyperlink_color_visuals(),
             },
             expansion: 0.0,
         }
@@ -267,7 +271,7 @@ pub trait Aesthetix {
             bg_fill: self.primary_accent_color_visuals(),
             stroke: egui::Stroke {
                 width: 1.0,
-                color: self.secondary_accent_color_visuals(),
+                color: self.bg_primary_color_visuals(),
             },
         }
     }
@@ -284,7 +288,7 @@ pub trait Aesthetix {
             (egui::TextStyle::Body, egui::FontId::new(14.0, Proportional)),
             (
                 egui::TextStyle::Button,
-                egui::FontId::new(12.5, Proportional),
+                egui::FontId::new(14.00, Proportional),
             ),
             (
                 egui::TextStyle::Heading,
@@ -320,8 +324,7 @@ pub trait Aesthetix {
 
             visuals: egui::Visuals {
                 dark_mode: self.dark_mode_visuals(),
-                override_text_color: self.fg_primary_text_color_visuals(),
-
+                //override_text_color: self.fg_primary_text_color_visuals(),
                 widgets: egui::style::Widgets {
                     noninteractive: self.custom_noninteractve_widget_visuals(),
                     inactive: self.widget_inactive_visual(),
@@ -334,8 +337,8 @@ pub trait Aesthetix {
                 panel_fill: self.bg_primary_color_visuals(),
                 faint_bg_color: self.bg_secondary_color_visuals(),
                 extreme_bg_color: self.bg_triage_color_visuals(),
-                code_bg_color: self.bg_code_color_visuals(),
-                warn_fg_color: self.fg_error_text_color_visuals(),
+                code_bg_color: self.bg_auxiliary_color_visuals(),
+                warn_fg_color: self.fg_warn_text_color_visuals(),
                 error_fg_color: self.fg_error_text_color_visuals(),
                 window_rounding: egui::Rounding {
                     nw: self.rounding_visuals(),

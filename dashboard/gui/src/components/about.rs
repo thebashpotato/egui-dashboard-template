@@ -1,6 +1,6 @@
 //! About page
 
-use dashboard_aesthetix::version::DASHBOARD_VERSION;
+use dashboard_common::version::DASHBOARD_VERSION;
 use eframe::egui::{RichText, Ui};
 
 /// Renders the about tab
