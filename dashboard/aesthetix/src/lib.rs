@@ -62,5 +62,5 @@
 // clipp ALLOW level hints
 #![allow(clippy::module_name_repetitions)]
 
-pub mod theme;
+pub mod themes;
 pub mod version;

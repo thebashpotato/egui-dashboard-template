@@ -1,6 +1,6 @@
 {
     "rust-analyzer.linkedProjects": [
-        "./dashboard/common/Cargo.toml",
+        "./dashboard/aesthetix/Cargo.toml",
         "./dashboard/gui/Cargo.toml",
         "./dashboard/gui/Cargo.toml"
     ]

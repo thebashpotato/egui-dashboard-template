@@ -1,5 +1,5 @@
 [package]
-name = "dashboard_template_gui"
+name = "dashboard_gui"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -9,8 +9,9 @@ authors.workspace = true
 description.workspace = true
 license.workspace = true
 
+
 [dependencies]
-dashboard_template_common.workspace = true
+dashboard_aesthetix.workspace = true
 eframe = { version = "0.23.0", default-features = false, features = [
     "glow",
     "default_fonts",

@@ -1,8 +1,5 @@
 [workspace]
-members = [
-    "dashboard/gui",
-    "dashboard/common",
-]
+members = ["dashboard/gui", "dashboard/aesthetix"]
 
 resolver = "2"
 
@@ -17,10 +14,15 @@ authors = ["matt.k.williams@protonmail.com"]
 license = "MIT"
 
 [workspace.dependencies]
-dashboard_template_common = { path = "dashboard/common" }
-dashboard_template_gui = { path = "dashboard/gui" }
+dashboard_aesthetix = { path = "dashboard/aesthetix" }
+dashboard_gui = { path = "dashboard/gui" }
 
-cargo-husky = {version = "1.5.0", features = ["precommit-hook", "prepush-hook", "run-cargo-test", "run-cargo-clippy"]}
+cargo-husky = { version = "1.5.0", features = [
+    "precommit-hook",
+    "prepush-hook",
+    "run-cargo-test",
+    "run-cargo-clippy",
+] }
 
 
 [profile.release]
