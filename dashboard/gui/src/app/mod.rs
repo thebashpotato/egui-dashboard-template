@@ -27,7 +27,9 @@ impl Dashboard {
         creation_context
             .egui_ctx
             .set_style(state.active_theme.custom_style());
+
         println!("{}", state.active_theme.name());
+
         Self {
             state,
             tab_labels: [
@@ -50,8 +52,11 @@ impl eframe::App for Dashboard {
     }
 
     fn update(&mut self, context: &egui::Context, _frame: &mut eframe::Frame) {
+        // This builds the notifications bar at the bottom of the app
+        // it must be drawn first so it stretches across the entire width of the app.
         self.notification_bar.ui(context, &self.state);
 
+        // This builds the main side navigation panel
         egui::SidePanel::left("main_side_panel")
             .resizable(false)
             .frame(
@@ -81,6 +86,25 @@ impl eframe::App for Dashboard {
                             ui_layout.selectable_value(&mut self.state.active_tab, *tab, *label);
                         }
                     },
+                );
+            });
+
+        // This builds the main central panel that holds the content of the active tab
+        egui::CentralPanel::default()
+            .frame(
+                egui::Frame::none()
+                    .inner_margin(self.state.active_theme.margin_style())
+                    .fill(self.state.active_theme.bg_secondary_color_visuals()),
+            )
+            .show(context, |ui_central_panel| {
+                ui_central_panel.heading(
+                    egui::RichText::new(
+                        *self
+                            .tab_labels
+                            .get(&self.state.active_tab)
+                            .expect("Could not fetch the current active tab name"),
+                    )
+                    .size(25.0),
                 );
             });
     }
