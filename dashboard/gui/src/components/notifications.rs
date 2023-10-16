@@ -28,7 +28,7 @@ impl NotificationBar {
     pub fn ui(&mut self, context: &egui::Context, state: &State) {
         let mut bottom_bar = egui::TopBottomPanel::bottom("bottom_panel").frame(
             egui::Frame::default()
-                .fill(state.active_theme.bg_primary_color_visuals())
+                .fill(state.active_theme.bg_secondary_color_visuals())
                 .inner_margin(egui::vec2(10.0, 5.0)),
         );
 

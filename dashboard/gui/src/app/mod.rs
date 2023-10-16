@@ -61,11 +61,11 @@ impl eframe::App for Dashboard {
             .resizable(false)
             .frame(
                 egui::Frame::none()
-                    .fill(self.state.active_theme.bg_primary_color_visuals())
+                    .fill(self.state.active_theme.bg_secondary_color_visuals())
                     .inner_margin(self.state.active_theme.margin_style())
                     .stroke(egui::Stroke::new(
                         1.0,
-                        self.state.active_theme.bg_primary_color_visuals(),
+                        self.state.active_theme.bg_secondary_color_visuals(),
                     )),
             )
             .exact_width(160.0)
@@ -94,9 +94,10 @@ impl eframe::App for Dashboard {
             .frame(
                 egui::Frame::none()
                     .inner_margin(self.state.active_theme.margin_style())
-                    .fill(self.state.active_theme.bg_secondary_color_visuals()),
+                    .fill(self.state.active_theme.bg_primary_color_visuals()),
             )
             .show(context, |ui_central_panel| {
+                ui_central_panel.add_space(13.0);
                 ui_central_panel.heading(
                     egui::RichText::new(
                         *self

@@ -11,7 +11,7 @@ fn main() -> Result<(), eframe::Error> {
         &format!("Dashboard v{}", *DASHBOARD_VERSION),
         eframe::NativeOptions {
             min_window_size: Some(egui::vec2(600.0, 400.0)),
-            initial_window_size: Some(egui::vec2(870.0, 600.0)),
+            initial_window_size: Some(egui::vec2(900.0, 500.0)),
             centered: true,
             ..Default::default()
         },
