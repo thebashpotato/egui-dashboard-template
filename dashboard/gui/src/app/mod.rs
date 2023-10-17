@@ -1,6 +1,7 @@
 //! Application state and business logic.
 mod state;
 
+use crate::components;
 use crate::components::notifications::NotificationBar;
 use dashboard_aesthetix::themes::{Aesthetix, StandardDark, StandardLight};
 use eframe::egui;
@@ -25,8 +26,7 @@ impl Dashboard {
     /// Create a new application    
     #[must_use]
     pub fn new(creation_context: &eframe::CreationContext<'_>) -> Self {
-        let themes: Vec<Rc<dyn dashboard_aesthetix::themes::Aesthetix>> =
-            vec![Rc::new(StandardDark), Rc::new(StandardLight)];
+        let themes: Vec<Rc<dyn Aesthetix>> = vec![Rc::new(StandardDark), Rc::new(StandardLight)];
 
         let state = State::new(themes.first().unwrap().clone());
 
@@ -35,7 +35,7 @@ impl Dashboard {
             .egui_ctx
             .set_style(state.active_theme.custom_style());
 
-        println!("{}", state.active_theme.name());
+        println!("Loading with '{}' theme", state.active_theme.name());
 
         Self {
             state,
@@ -115,6 +115,33 @@ impl eframe::App for Dashboard {
                     )
                     .size(25.0),
                 );
+
+                match self.state.active_tab {
+                    Tab::Home => {
+                        // Load the Home page
+                        ui_central_panel.add_space(13.0);
+                        ui_central_panel.heading(egui::RichText::new("Home").size(25.0));
+                    }
+                    Tab::Settings => {
+                        // Load the Settings page
+                        ui_central_panel.add_space(13.0);
+                        ui_central_panel.heading(egui::RichText::new("Settings").size(25.0));
+                    }
+                    Tab::Logs => {
+                        // Load the Logs page
+                        ui_central_panel.add_space(13.0);
+                        ui_central_panel.heading(egui::RichText::new("Logs").size(25.0));
+                    }
+                    Tab::Debug => {
+                        // Load the Debug page
+                        ui_central_panel.add_space(13.0);
+                        ui_central_panel.heading(egui::RichText::new("Debug").size(25.0));
+                    }
+                    Tab::About => {
+                        // Load the About page
+                        components::about::about_tab_ui(ui_central_panel);
+                    }
+                }
             });
     }
 }

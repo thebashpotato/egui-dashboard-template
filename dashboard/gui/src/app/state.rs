@@ -32,7 +32,7 @@ pub struct State {
 impl State {
     /// Create a new state with the CarlDark theme
     #[must_use]
-    pub fn new(theme: Rc<dyn Aesthetix>) -> Self {
+    pub const fn new(theme: Rc<dyn Aesthetix>) -> Self {
         Self {
             active_tab: Tab::Home,
             active_theme: theme,

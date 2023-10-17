@@ -15,7 +15,7 @@ impl Aesthetix for StandardDark {
     }
 
     fn primary_accent_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(120, 174, 237)
+        egui::Color32::from_rgb(98, 160, 234)
     }
 
     fn secondary_accent_color_visuals(&self) -> egui::Color32 {

@@ -15,7 +15,7 @@ impl Aesthetix for StandardLight {
     }
 
     fn primary_accent_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(28, 113, 216)
+        egui::Color32::from_rgb(98, 160, 234)
     }
 
     fn secondary_accent_color_visuals(&self) -> egui::Color32 {
@@ -60,7 +60,7 @@ impl Aesthetix for StandardLight {
     }
 
     fn dark_mode_visuals(&self) -> bool {
-        true
+        false
     }
 
     fn margin_style(&self) -> f32 {
