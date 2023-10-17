@@ -6,7 +6,7 @@ use egui;
 
 /// Standard light theme that is based of the Gnome projects libadwaita theme.
 /// https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/named-colors.html
-#[derive(Debug, Default, Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 pub struct StandardLight;
 
 impl Aesthetix for StandardLight {

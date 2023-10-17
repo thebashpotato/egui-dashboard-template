@@ -2,10 +2,11 @@
 mod state;
 
 use crate::components::notifications::NotificationBar;
-use dashboard_aesthetix::themes::StandardDark;
+use dashboard_aesthetix::themes::{Aesthetix, StandardDark, StandardLight};
 use eframe::egui;
 pub use state::{State, Tab};
 use std::collections::BTreeMap;
+use std::rc::Rc;
 
 /// Holds application state and implements the business logic.
 #[derive(Debug)]
@@ -14,6 +15,8 @@ pub struct Dashboard {
     state: State,
     /// Tab labels and icons
     tab_labels: BTreeMap<Tab, &'static str>,
+    /// Holds the supported themes that the user can switch between
+    themes: Vec<Rc<dyn Aesthetix>>,
     /// Notifications bar
     notification_bar: NotificationBar,
 }
@@ -22,7 +25,10 @@ impl Dashboard {
     /// Create a new application    
     #[must_use]
     pub fn new(creation_context: &eframe::CreationContext<'_>) -> Self {
-        let state = State::new(Box::new(StandardDark::default()));
+        let themes: Vec<Rc<dyn dashboard_aesthetix::themes::Aesthetix>> =
+            vec![Rc::new(StandardDark), Rc::new(StandardLight)];
+
+        let state = State::new(themes.first().unwrap().clone());
 
         // Initialize the custom theme/styles for egui
         creation_context
@@ -42,6 +48,7 @@ impl Dashboard {
             ]
             .into_iter()
             .collect(),
+            themes,
             notification_bar: NotificationBar::new(),
         }
     }
