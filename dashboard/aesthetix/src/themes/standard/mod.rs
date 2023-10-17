@@ -3,4 +3,7 @@
 //! Generic Dark and Light Theme
 
 mod dark;
-pub use dark::GenericDark;
+mod light;
+
+pub use dark::StandardDark;
+pub use light::StandardLight;

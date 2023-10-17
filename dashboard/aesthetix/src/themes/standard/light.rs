@@ -1,21 +1,21 @@
-//! A Standard Dark theme that should look good on any platform.
+//! A Standard Light theme that should look good on any platform.
 //! This is basically libadwaita from the Gnome project.
 
 use crate::themes::traits::Aesthetix;
 use egui;
 
-/// A standard dark theme.
+/// Standard light theme that is based of the Gnome projects libadwaita theme.
 /// https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/named-colors.html
 #[derive(Debug, Default, Clone, Copy)]
-pub struct StandardDark;
+pub struct StandardLight;
 
-impl Aesthetix for StandardDark {
+impl Aesthetix for StandardLight {
     fn name(&self) -> &str {
-        "Standard Dark"
+        "Standard Light"
     }
 
     fn primary_accent_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(120, 174, 237)
+        egui::Color32::from_rgb(28, 113, 216)
     }
 
     fn secondary_accent_color_visuals(&self) -> egui::Color32 {
@@ -23,39 +23,40 @@ impl Aesthetix for StandardDark {
     }
 
     fn bg_primary_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(30, 30, 30)
+        egui::Color32::from_rgb(255, 255, 255)
     }
 
     fn bg_secondary_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(48, 48, 48)
+        egui::Color32::from_rgb(246, 246, 246)
     }
 
     fn bg_triage_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(40, 40, 40)
+        egui::Color32::from_rgb(222, 221, 221)
     }
 
     fn bg_auxiliary_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(72, 72, 72)
+        egui::Color32::from_rgb(192, 191, 188)
     }
 
     fn hyperlink_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(109, 109, 109)
+        egui::Color32::from_rgb(154, 153, 150)
     }
 
     fn fg_primary_text_color_visuals(&self) -> Option<egui::Color32> {
-        Some(egui::Color32::from_rgb(255, 255, 255))
+        Some(egui::Color32::from_rgb(16, 16, 16))
+        //Some(egui::Color32::from_rgb(4, 4, 4))
     }
 
     fn fg_success_text_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(38, 162, 105)
+        egui::Color32::from_rgb(46, 194, 126)
     }
 
     fn fg_warn_text_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(205, 147, 9)
+        egui::Color32::from_rgb(229, 165, 10)
     }
 
     fn fg_error_text_color_visuals(&self) -> egui::Color32 {
-        egui::Color32::from_rgb(192, 28, 40)
+        egui::Color32::from_rgb(224, 27, 36)
     }
 
     fn dark_mode_visuals(&self) -> bool {

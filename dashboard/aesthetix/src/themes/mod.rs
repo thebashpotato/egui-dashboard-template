@@ -3,5 +3,5 @@
 mod standard;
 mod traits;
 
-pub use standard::GenericDark;
+pub use standard::{StandardDark, StandardLight};
 pub use traits::Aesthetix;

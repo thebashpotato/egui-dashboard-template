@@ -2,6 +2,7 @@
 mod state;
 
 use crate::components::notifications::NotificationBar;
+use dashboard_aesthetix::themes::StandardDark;
 use eframe::egui;
 pub use state::{State, Tab};
 use std::collections::BTreeMap;
@@ -21,7 +22,7 @@ impl Dashboard {
     /// Create a new application    
     #[must_use]
     pub fn new(creation_context: &eframe::CreationContext<'_>) -> Self {
-        let state = State::new();
+        let state = State::new(Box::new(StandardDark::default()));
 
         // Initialize the custom theme/styles for egui
         creation_context

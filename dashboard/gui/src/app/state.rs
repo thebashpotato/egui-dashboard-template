@@ -1,7 +1,6 @@
 //! holds the state of the application
 
-use dashboard_aesthetix::themes::{Aesthetix, GenericDark};
-
+use dashboard_aesthetix::themes::Aesthetix;
 
 /// The different tabs of the application
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Debug)]
@@ -32,10 +31,10 @@ pub struct State {
 impl State {
     /// Create a new state with the CarlDark theme
     #[must_use]
-    pub fn new() -> Self {
+    pub fn new(theme: Box<dyn Aesthetix>) -> Self {
         Self {
             active_tab: Tab::Home,
-            active_theme: Box::new(GenericDark),
+            active_theme: theme,
         }
     }
 }
