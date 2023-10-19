@@ -59,7 +59,6 @@
     clippy::unseparated_literal_suffix,
     clippy::verbose_file_reads
 )]
-
 // clippy ALLOW level hints
 #![allow(clippy::module_name_repetitions)]
 

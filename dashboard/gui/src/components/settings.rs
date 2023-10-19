@@ -6,7 +6,11 @@ use eframe::egui;
 use std::rc::Rc;
 
 /// Renders the about tab
-pub fn settings_tab_ui(ui_root: &mut egui::Ui, state: &mut ApplicationState, themes: &Vec<Rc<dyn Aesthetix>>) {
+pub fn settings_tab_ui(
+    ui_root: &mut egui::Ui,
+    state: &mut ApplicationState,
+    themes: &Vec<Rc<dyn Aesthetix>>,
+) {
     ui_root.horizontal_centered(|ui_horizontal_center| {
         // add combo box to allow the user to select from the available themes in the themes vector
         ui_horizontal_center.label("Theme:");
