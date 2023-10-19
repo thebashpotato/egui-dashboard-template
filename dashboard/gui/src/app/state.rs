@@ -20,22 +20,20 @@ pub enum Tab {
 
 /// Application state
 #[derive(Debug)]
-pub struct State {
+pub struct ApplicationState {
     /// The currently selected tab
     pub active_tab: Tab,
     /// The active theme
-    // TODO: Make this a list of themes, and allow the user to switch between them.
-    // TODO: Switch to static dispatching instead of dynamic dispatching.
     pub active_theme: Rc<dyn Aesthetix>,
 }
 
-impl State {
-    /// Create a new state with the CarlDark theme
+impl ApplicationState {
+    /// Create a new state with an active theme
     #[must_use]
-    pub const fn new(theme: Rc<dyn Aesthetix>) -> Self {
+    pub const fn new(active_theme: Rc<dyn Aesthetix>) -> Self {
         Self {
             active_tab: Tab::Home,
-            active_theme: theme,
+            active_theme,
         }
     }
 }

@@ -2,6 +2,7 @@
     "rust-analyzer.linkedProjects": [
         "./dashboard/aesthetix/Cargo.toml",
         "./dashboard/gui/Cargo.toml",
+        "./dashboard/gui/Cargo.toml",
         "./dashboard/gui/Cargo.toml"
     ]
 }

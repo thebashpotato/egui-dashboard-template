@@ -6,7 +6,6 @@ use egui;
 
 /// A standard dark theme.
 /// https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/named-colors.html
-#[derive(Debug, Clone, Copy)]
 pub struct StandardDark;
 
 impl Aesthetix for StandardDark {

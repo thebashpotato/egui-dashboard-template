@@ -3,3 +3,4 @@
 pub mod about;
 pub mod basic;
 pub mod notifications;
+pub mod settings;

@@ -5,7 +5,7 @@ use crate::components;
 use crate::components::notifications::NotificationBar;
 use dashboard_aesthetix::themes::{Aesthetix, StandardDark, StandardLight};
 use eframe::egui;
-pub use state::{State, Tab};
+pub use state::{ApplicationState, Tab};
 use std::collections::BTreeMap;
 use std::rc::Rc;
 
@@ -13,7 +13,7 @@ use std::rc::Rc;
 #[derive(Debug)]
 pub struct Dashboard {
     /// Holds the state of the application
-    state: State,
+    state: ApplicationState,
     /// Tab labels and icons
     tab_labels: BTreeMap<Tab, &'static str>,
     /// Holds the supported themes that the user can switch between
@@ -24,11 +24,22 @@ pub struct Dashboard {
 
 impl Dashboard {
     /// Create a new application    
+    ///
+    /// # Panics
+    ///
+    /// if the first theme in the list of themes could not be loaded
     #[must_use]
     pub fn new(creation_context: &eframe::CreationContext<'_>) -> Self {
         let themes: Vec<Rc<dyn Aesthetix>> = vec![Rc::new(StandardDark), Rc::new(StandardLight)];
 
-        let state = State::new(themes.first().unwrap().clone());
+        let active_theme: Rc<dyn Aesthetix> = match themes.first() {
+            Some(theme) => theme.clone(),
+            None => panic!(
+                "The first theme in the list of available themes could not be loaded => 'Dashboard::new'"
+            ),
+        };
+
+        let state = ApplicationState::new(active_theme);
 
         // Initialize the custom theme/styles for egui
         creation_context
@@ -124,8 +135,11 @@ impl eframe::App for Dashboard {
                     }
                     Tab::Settings => {
                         // Load the Settings page
-                        ui_central_panel.add_space(13.0);
-                        ui_central_panel.heading(egui::RichText::new("Settings").size(25.0));
+                        components::settings::settings_tab_ui(
+                            ui_central_panel,
+                            &mut self.state,
+                            &self.themes,
+                        );
                     }
                     Tab::Logs => {
                         // Load the Logs page

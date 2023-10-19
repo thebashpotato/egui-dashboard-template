@@ -387,3 +387,9 @@ impl std::fmt::Debug for dyn Aesthetix {
         write!(f, "{}", self.name())
     }
 }
+
+impl std::cmp::PartialEq for dyn Aesthetix {
+    fn eq(&self, other: &Self) -> bool {
+        self.name() == other.name()
+    }
+}

@@ -6,7 +6,6 @@ use egui;
 
 /// Standard light theme that is based of the Gnome projects libadwaita theme.
 /// https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/named-colors.html
-#[derive(Debug, Clone, Copy)]
 pub struct StandardLight;
 
 impl Aesthetix for StandardLight {
@@ -44,7 +43,6 @@ impl Aesthetix for StandardLight {
 
     fn fg_primary_text_color_visuals(&self) -> Option<egui::Color32> {
         Some(egui::Color32::from_rgb(16, 16, 16))
-        //Some(egui::Color32::from_rgb(4, 4, 4))
     }
 
     fn fg_success_text_color_visuals(&self) -> egui::Color32 {

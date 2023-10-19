@@ -1,6 +1,6 @@
 //! Notifications bar at the bottom of the app
 
-use crate::app::State;
+use crate::app::ApplicationState;
 use eframe::egui;
 
 // Text to display when there are no notifications
@@ -25,7 +25,7 @@ impl NotificationBar {
     }
 
     /// Renders the bottom bar
-    pub fn ui(&mut self, context: &egui::Context, state: &State) {
+    pub fn ui(&mut self, context: &egui::Context, state: &ApplicationState) {
         let mut bottom_panel_widget = egui::TopBottomPanel::bottom("bottom_panel").frame(
             egui::Frame::default()
                 .fill(state.active_theme.bg_secondary_color_visuals())
