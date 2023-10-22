@@ -1,8 +1,8 @@
 //! Settings Tab
 
 use crate::app::ApplicationState;
-use egui_aesthetix::Aesthetix;
 use eframe::egui;
+use egui_aesthetix::Aesthetix;
 use std::rc::Rc;
 
 /// Renders the about tab
@@ -19,13 +19,18 @@ pub fn settings_tab_ui(
             .selected_text(state.active_theme.name())
             .show_ui(ui_horizontal_center, |ui_combobox| {
                 for theme in themes.iter() {
-                    ui_combobox.selectable_value(
+                    let res: egui::Response = ui_combobox.selectable_value(
                         &mut state.active_theme,
                         theme.clone(),
                         theme.name(),
                     );
+                    if res.changed() {
+                        println!("Theme changed to '{}'", theme.name());
+                        ui_combobox
+                            .ctx()
+                            .set_style(state.active_theme.custom_style());
+                    }
                 }
             });
     });
-    ui_root.ctx().set_style(state.active_theme.custom_style());
 }
