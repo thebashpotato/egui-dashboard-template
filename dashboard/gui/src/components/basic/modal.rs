@@ -4,9 +4,9 @@ use eframe::egui::{Align, Align2, Layout, Ui, Window};
 
 /// Valid responses that can be returned from a modal
 pub enum ModalResponse {
-    // Okay type
+    /// Okay type
     Ok,
-    // Cancel type
+    /// Cancel type
     Cancel,
 }
 

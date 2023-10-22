@@ -1,6 +1,6 @@
 //! Custom display string for basic components
 
-// DisplayString is a custom display string for basic components
+/// DisplayString is a custom display string for basic components
 #[derive(Clone)]
 pub struct DisplayString {
     /// The id of the component
