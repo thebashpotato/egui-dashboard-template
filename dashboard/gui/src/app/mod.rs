@@ -3,7 +3,11 @@ mod state;
 
 use crate::components;
 use crate::components::notifications::NotificationBar;
-use dashboard_aesthetix::themes::{Aesthetix, StandardDark, StandardLight};
+use egui_aesthetix::{
+    themes::{CarlDark, StandardDark, StandardLight},
+    Aesthetix,
+};
+
 use eframe::egui;
 pub use state::{ApplicationState, Tab};
 use std::collections::BTreeMap;
@@ -30,7 +34,11 @@ impl Dashboard {
     /// if the first theme in the list of themes could not be loaded
     #[must_use]
     pub fn new(creation_context: &eframe::CreationContext<'_>) -> Self {
-        let themes: Vec<Rc<dyn Aesthetix>> = vec![Rc::new(StandardDark), Rc::new(StandardLight)];
+        let themes: Vec<Rc<dyn Aesthetix>> = vec![
+            Rc::new(StandardDark),
+            Rc::new(StandardLight),
+            Rc::new(CarlDark),
+        ];
 
         let active_theme: Rc<dyn Aesthetix> = match themes.first() {
             Some(theme) => theme.clone(),

@@ -1,6 +1,5 @@
 [workspace]
-members = ["dashboard/gui", "dashboard/aesthetix", "dashboard/common"]
-
+members = ["dashboard/gui", "dashboard/common"]
 resolver = "2"
 
 [workspace.package]
@@ -14,10 +13,8 @@ authors = ["matt.k.williams@protonmail.com"]
 license = "MIT"
 
 [workspace.dependencies]
-dashboard_aesthetix = { path = "dashboard/aesthetix" }
 dashboard_gui = { path = "dashboard/gui" }
 dashboard_common = { path = "dashboard/common" }
-
 cargo-husky = { version = "1.5.0", features = [
     "precommit-hook",
     "prepush-hook",

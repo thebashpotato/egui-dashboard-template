@@ -1,6 +1,6 @@
 //! holds the state of the application
 
-use dashboard_aesthetix::themes::Aesthetix;
+use egui_aesthetix::Aesthetix;
 use std::rc::Rc;
 
 /// The different tabs of the application

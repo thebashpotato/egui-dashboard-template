@@ -1,7 +1,7 @@
 //! Settings Tab
 
 use crate::app::ApplicationState;
-use dashboard_aesthetix::themes::Aesthetix;
+use egui_aesthetix::Aesthetix;
 use eframe::egui;
 use std::rc::Rc;
 

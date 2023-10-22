@@ -11,13 +11,13 @@ license.workspace = true
 
 
 [dependencies]
-dashboard_aesthetix.workspace = true
 dashboard_common.workspace = true
 eframe = { version = "0.23.0", default-features = false, features = [
     "glow",
     "default_fonts",
 ] }
 env_logger = "0.10.0"
+egui-aesthetix = { version = "0.2.0", features = ["all_themes"] }
 
 [dev-dependencies]
 cargo-husky.workspace = true
