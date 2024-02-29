@@ -7,11 +7,14 @@ use eframe::egui;
 fn main() -> Result<(), eframe::Error> {
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
 
+    let viewport = egui::ViewportBuilder::default()
+        .with_title("Dashboard Template")
+        .with_min_inner_size([795.0, 435.0]);
+
     eframe::run_native(
         &format!("Dashboard v{}", *DASHBOARD_VERSION),
         eframe::NativeOptions {
-            min_window_size: Some(egui::vec2(795.0, 435.0)),
-            initial_window_size: Some(egui::vec2(895.0, 535.0)),
+            viewport,
             centered: true,
             ..Default::default()
         },

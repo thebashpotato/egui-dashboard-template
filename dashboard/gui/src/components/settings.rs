@@ -5,11 +5,11 @@ use eframe::egui;
 use egui_aesthetix::Aesthetix;
 use std::rc::Rc;
 
-/// Renders the about tab
+/// Renders the settings page
 pub fn settings_tab_ui(
     ui_root: &mut egui::Ui,
     state: &mut ApplicationState,
-    themes: &Vec<Rc<dyn Aesthetix>>,
+    themes: &[Rc<dyn Aesthetix>],
 ) {
     egui::ScrollArea::new([false, true])
         .id_source("settings_tab_scroll_area")

@@ -15,6 +15,12 @@ pub struct NotificationBar {
     expanded: bool,
 }
 
+impl Default for NotificationBar {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl NotificationBar {
     /// Renders the notifications bar at the bottom of the app
     pub fn new() -> Self {

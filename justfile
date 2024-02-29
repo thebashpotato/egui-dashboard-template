@@ -1,5 +1,5 @@
-format:
-  @cargo fmt
+fmt:
+  @cargo fmt --all
 
 lint:
   @cargo clippy --all-targets --all-features -- -D warnings
@@ -16,6 +16,6 @@ build-release:
 test: clean
   cargo test
 
-dev: format lint test build-debug
+dev: fmt lint test build-debug
 
-release: format lint build-release
+release: fmt lint build-release
