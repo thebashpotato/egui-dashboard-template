@@ -9,7 +9,7 @@ fn main() -> Result<(), eframe::Error> {
 
     let viewport = egui::ViewportBuilder::default()
         .with_title("Dashboard Template")
-        .with_min_inner_size([795.0, 435.0]);
+        .with_min_inner_size([1000.0, 435.0]);
 
     eframe::run_native(
         &format!("Dashboard v{}", *DASHBOARD_VERSION),

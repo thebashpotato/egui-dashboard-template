@@ -31,10 +31,10 @@ pub fn settings_tab_ui(
                                 .width(200.0)
                                 .selected_text(state.active_theme.name())
                                 .show_ui(ui_grid, |ui_combobox| {
-                                    for theme in themes.iter() {
+                                    for theme in themes {
                                         let res: egui::Response = ui_combobox.selectable_value(
                                             &mut state.active_theme,
-                                            theme.clone(),
+                                            Rc::clone(theme),
                                             theme.name(),
                                         );
                                         if res.changed() {

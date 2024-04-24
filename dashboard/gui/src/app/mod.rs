@@ -3,12 +3,13 @@ mod state;
 
 use crate::components;
 use crate::components::notifications::NotificationBar;
+use eframe::egui;
 use egui_aesthetix::{
-    themes::{CarlDark, StandardDark, StandardLight},
+    themes::{
+        CarlDark, NordDark, NordLight, StandardDark, StandardLight, TokyoNight, TokyoNightStorm,
+    },
     Aesthetix,
 };
-
-use eframe::egui;
 pub use state::{ApplicationState, Tab};
 use std::collections::BTreeMap;
 use std::rc::Rc;
@@ -38,13 +39,15 @@ impl Dashboard {
             Rc::new(StandardDark),
             Rc::new(StandardLight),
             Rc::new(CarlDark),
+            Rc::new(NordDark),
+            Rc::new(NordLight),
+            Rc::new(TokyoNight),
+            Rc::new(TokyoNightStorm),
         ];
 
         let active_theme: Rc<dyn Aesthetix> = match themes.first() {
-            Some(theme) => theme.clone(),
-            None => panic!(
-                "The first theme in the list of available themes could not be loaded => 'Dashboard::new'"
-            ),
+            Some(theme) => Rc::clone(theme),
+            None => Rc::new(StandardDark),
         };
 
         let state = ApplicationState::new(active_theme);
@@ -95,12 +98,12 @@ impl eframe::App for Dashboard {
                         self.state.active_theme.bg_secondary_color_visuals(),
                     )),
             )
-            .exact_width(160.0)
+            .exact_width(200.0)
             .show(context, |ui_side_panel| {
                 ui_side_panel.with_layout(
                     egui::Layout::top_down_justified(egui::Align::Center),
                     |ui_layout| {
-                        ui_layout.add_space(13.0);
+                        ui_layout.add_space(15.0);
                         ui_layout.heading(egui::RichText::new("Dashboard").size(25.0).strong());
                         egui::warn_if_debug_build(ui_layout);
                     },

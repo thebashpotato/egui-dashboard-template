@@ -14,7 +14,7 @@ pub fn about_tab_ui(ui_root: &mut egui::Ui) {
         ui_vertical_centered.add(egui::Label::new(
             egui::RichText::new(format!("Dashboard v{}", *DASHBOARD_VERSION)).size(30.0),
         ));
-        ui_vertical_centered.label(r#"Dashboard template for modern cross platform applications"#);
+        ui_vertical_centered.label("Dashboard template for modern cross platform applications");
 
         ui_vertical_centered.hyperlink_to(
             "Check out the code on GitHub",

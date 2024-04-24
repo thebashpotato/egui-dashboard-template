@@ -66,7 +66,6 @@ mem_forget = "deny"
 mixed_read_write_in_expression = "deny"
 mutex_atomic = "deny"
 needless_raw_strings = "deny"
-non_ascii_literal = "deny"
 panic = "deny"
 print_stderr = "deny"
 pub_without_shorthand = "deny"
@@ -92,6 +91,7 @@ use_debug = "deny"
 self_named_module_files = "allow"
 
 # noise and or false-positives
+non_ascii_literal = "allow"
 mod_module_files = { level = "allow", priority = 1 }
 missing_errors_doc = { level = "allow", priority = 1 }
 used_underscore_binding = { level = "allow", priority = 1 }
